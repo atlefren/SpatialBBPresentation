@@ -1,0 +1,34 @@
+html.bouvet-intro body {
+    background:url("../../img/bouvet_front.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #FF6400;
+    background-size: 100%;
+}
+
+html.bouvet-end body {
+    background:url("../../img/bouvetisland.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+html.bouvet-intro h1, h2, h3, p {
+    background-color: rgba(255,255,255,0.8);
+}
+
+html.bouvet-slide body {
+    background: url("../../img/topright.png");
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+
+
+img {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+html.nothing body {
+    background: #fff;
+}
+

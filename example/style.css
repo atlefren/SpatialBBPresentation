@@ -1,0 +1,40 @@
+body {
+    font-family: Arial,Helvetica,MS sans-serif;
+}
+
+.main {
+    height: 700px;
+    width: 850px;
+    border: 1px solid #000000;
+}
+
+#map {
+    height: 700px;
+    background: gray;
+    width: 380px;
+    padding: 0;
+    margin: 0;
+    float: left;
+}
+
+#offices {
+    float: left;
+    background: #f8f8ff;
+    height: 690px;
+    width: 460px;
+    padding: 5px;
+}
+
+address {
+    width: 220px;
+    float: left;
+    display: block;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+address strong {
+    font-size: 14px;
+    color: #4F84A0;
+    font-style: normal;
+}

@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>SpatialBB - Spatial Hipster Javascript - Atle Frenvik Sveen</title>
+
+
+		<meta name="author" content="Atle Frenvik Sveen">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="reveal/css/reveal.min.css">
+		<link rel="stylesheet" href="reveal/css/theme/beige.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="reveal/lib/css/zenburn.css">
+
+        <link rel="stylesheet" href="reveal/css/test.css">
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+        <style type="text/css">
+            .no-uppercase {text-transform: none !important;}
+        </style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section data-state="bouvet-intro">
+
+					<h1 class="no-uppercase">SpatialBB </h1>
+                    <h2>Spatial Hipster Javascript</h2>
+					<h3>Gis-faggruppemøte Bouvet</h3>
+					<p>
+						<small>Atle Frenvik Sveen, Bouvet ASA <br>
+                            54°23'55"S 3°24'5"E</small>
+					</p>
+				</section>
+
+                <section data-state="bouvet-slide">
+                    <h2>Agenda</h2>
+                    <ul>
+                        <li>Backbone.js</li>
+                        <li>Leaflet</li>
+                        <li>SpatialBB</li>
+                        <li>Eksempel</li>
+                    </ul>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <img src="img/backbone.png" />
+                    <blockquote>Backbone.js gives structure to web applications by providing models with key-value binding and custom events, collections with a rich API of enumerable functions, views with declarative event handling, and connects it all to your existing API over a RESTful JSON interface.</blockquote>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>Som betyr?</h2>
+                    <ul>
+                        <li>MVC: Model, View og Collection</li>
+                        <li>Strukturert Javascript</li>
+                        <li>Separasjon av data og presentasjon</li>
+                        <li>Enkelt å snakke med fornuftig API</li>
+                    </ul>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>Hvorfor backbone?</h2>
+                    <ul>
+                        <li>Lite (58kb)</li>
+                        <li>Mye brukt</li>
+                        <li>Stabilt</li>
+                        <li>Ikke masete</li>
+                        <li>Legger seg ikke opp i HTMLen din</li>
+                    </ul>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>Slutt på rot?</h2>
+                    <pre>
+                        <code>
+
+
+var MyListView = Backbone.View.extend({
+    initialize: function () {
+        this.collection.on("add", this.modelAdded, this);
+    },
+
+    modelAdded: function (model) {
+        this.$el.append(
+            new MyModelView({"model": model}).render().$el
+        );
+    }
+});
+
+var MyModelView = Backbone.View.extend({
+    tagName: "li",
+    render: function () {
+        this.$el.html(this.model.get("name"));
+        return this;
+    }
+});
+
+/*Create a collection*/
+var markerCollection = new Backbone.Collection();
+
+/*Create a listview*/
+var view = new MyListView({
+                            "el": $("#view"),
+                            "collection": collection
+});
+
+collection.add([
+                {"name": "Item 1},
+                {"name": "Item 2}
+]);
+                        </code>
+                    </pre>
+
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>Andre alternativer</h2>
+                    <ul>
+                        <li><a href="http://emberjs.com/">Ember.js</a></li>
+                        <li><a href="http://angularjs.org/">Angular.js</a></li>
+                        <li><a href="http://knockoutjs.com/">Knockout.js</a></li>
+                        <li><a href="https://github.com/twitter/flight">Twitter Flight</a></li>
+                        <li><a href="http://html9responsiveboilerstrapjs.com/">HTML9 Responsive Boilerstrap JS</a></li>
+                        <li>+++</li>
+                    </ul>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>Se også</h2>
+                    <a href="http://video.javazone.no/talk/49375220">Nathaniel Schutta: JavaScript Libraries You Aren't Using...Yet (JavaZone 2012)</a>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <img src="img/leaflet.png">
+                    <blockquote>
+                        Leaflet is a modern open-source JavaScript library for mobile-friendly interactive maps.
+                        Weighing just about 28 KB of JS code, it has all the features most developers ever need for online maps.
+                    </blockquote>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>Jaha?</h2>
+                    <ul>
+                        <li>Tenk Google Maps</li>
+                        <li>..eller OpenLayers</li>
+                    </ul>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>Kart med Popup</h2>
+                    <pre>
+                        <code>
+var map = L.map('map').fitWorld();
+
+L.tileLayer(
+    'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors.',
+        maxZoom: 18
+    }
+).addTo(map);
+
+L.marker([51.5, -0.09]).addTo(map)
+    .bindPopup('A pretty CSS3 popup. <br> Easily customizable.')
+    .openPopup();
+                        </code>
+                    </pre>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>Hvordan funker det?</h2>
+                    <ul>
+                        <li>Map-objekt lever i en div</li>
+                        <li>Legger til layere (bakgrunnskart)</li>
+                        <li>Legge til Markers
+                            <ul>
+                                <li>... som har eventer</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>Under panseret</h2>
+                    <ul>
+                        <li>Oversette skjerm-koordinater til "verdenskoordinater"</li>
+                        <li>Oversette verdenskoordinater til lengde-/breddegrad</li>
+                        <li>Hente kart-tiles</li>
+                        <li>Posisjonere markere</li>
+                    </ul>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>Du får ikke bakgrunnskart</h2>
+                    <p>.. men det er mange tile-tilbydere</p>
+                    <ul>
+                        <li>Cloudmade</li>
+                        <li>OpenStreetMap</li>
+                        <li>kartverket</li>
+                        <li>Lage egne (TileMill)</li>
+                    </ul>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>Tanke..</h2>
+                    <p>Er ikke ..
+                    <strong>Markers på kart</strong>
+                    .. mye av det samme som..<strong>Models i en collection</strong>?
+                    </p>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2 class="no-uppercase">Enter SpatialBB!</h2>
+                    <ul>
+                        <li>Microbibliotek som kombinerer Backbone.js og Leaflet</li>
+                        <li>Påbegynnt på lørdag (!)</li>
+                        <li>Startet for å teste javascript-testing</li>
+                        <li><a href="https://github.com/atlefren/SpatialBB">github.com/atlefren/SpatialBB</a></li>
+                    </ul>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>MarkerModel</h2>
+                    <pre>
+                        <code>
+var model = new SpatialBB.MarkerModel({
+                            "name": "Model 1",
+                            "position": {"lon": 10, "lat": 60}
+});
+
+model.getMarker(); //returnerer en Leaflet-marker
+                        </code>
+                    </pre>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>MarkerCollection</h2>
+                    <pre>
+                        <code>
+var model1 = new ns.MarkerModel({"position": {"lon": 10, "lat": 60}});
+var model2 = new ns.MarkerModel({"position": {"lon": 11, "lat": 60}});
+var collection = new ns.MarkerCollection();
+collection.add([model1, model2]);
+collection.getLayerGroup(); //en L.MarkerGroup som oppdateres når collection oppdateres
+                        </code>
+                    </pre>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>Eksempel</h2>
+                    <iframe src="/home/atlefren/code/SpatialBB/example/index.html" style="width: 800px; height: 630px;"></iframe>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>Mer avansert</h2>
+                    <p>Fikse <a href="http://www.bouvet.no/BouvetWEB/Om_Oss_Vaare_Kontorer.aspx">http://www.bouvet.no/BouvetWEB/Om_Oss_Vaare_Kontorer.aspx</a></p>
+                    <ul>
+                        <li>Hente modeller over REST</li>
+                        <li>Templates med underscore</li>
+                        <li>Forskjellige kart-tiles</li>
+                        <li>interaksjon mellom view og kart</li>
+                    </ul>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>HTML</h2>
+                    <pre>
+                        <code>
+&lt;div class="main"&gt;
+    &lt;div id="map"&gt;map&lt;/div&gt;
+    &lt;div id="offices"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script type="text/template" id="office_template"&gt;
+    &lt;strong&gt;&lt;%=name%&gt;&lt;/strong&gt;&lt;br /&gt;
+    &lt;%= street %&gt;&lt;br /&gt;
+    &lt;% if(line2) {%&gt; &lt;%= line2 %&gt;&lt;br /&gt; &lt;% } %&gt;
+    &lt;%= zip %&gt; &lt;%= place %&gt;&lt;br /&gt;
+    Tlf: &lt;%= tlf %&gt;&lt;br /&gt;
+    &lt;% if(!line2) {%&gt; &lt;br /&gt; &lt;% } %&gt;
+&lt;/script&gt;
+                        </code>
+                    </pre>
+                </section>
+
+
+                <section data-state="nothing">
+                    <h2>JSON-data</h2>
+                    <iframe src="example/offices.json" style="width: 1000px; height: 800px;"></iframe>
+                </section>
+
+                <section data-state="nothing">
+                    <h2>Javascript - Objekter</h2>
+                    <iframe src="example/mvc.js" style="width: 1000px; height: 800px;"></iframe>
+                </section>
+
+                <section data-state="nothing">
+                    <h2>Javascript - Init</h2>
+                    <iframe src="example/load_offices.js" style="width: 1000px; height: 800px;"></iframe>
+                </section>
+
+                <section data-state="nothing">
+                    <iframe src="http://localhost:8000/1.html" style="width: 1000px; height: 800px;"></iframe>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>Kart</h2>
+                    <ul>
+                        <li>Sette opp kart</li>
+                        <li>Flere bakgrunnskart</li>
+                    </ul>
+                </section>
+
+                <section data-state="nothing">
+                    <h2>Javascript</h2>
+                    <iframe src="example/show_map.js" style="width: 1000px; height: 800px;"></iframe>
+                </section>
+
+                <section data-state="nothing">
+                    <iframe src="http://localhost:8000/2.html" style="width: 1000px; height: 800px;"></iframe>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>Bruke SpatialBB</h2>
+                    <ul>
+                        <li>Konvertere model og collection</li>
+                        <li>Legge layerGroup til kart</li>
+                    </ul>
+                </section>
+
+                <section data-state="nothing">
+                    <h2>Javascript - Spatial Objekter</h2>
+                    <iframe src="example/spatial_mvc.js" style="width: 1000px; height: 800px;"></iframe>
+                </section>
+
+                <section data-state="nothing">
+                    <h2>Javascript - lasting</h2>
+                    <iframe src="example/load_offices2.js" style="width: 1000px; height: 800px;"></iframe>
+                </section>
+
+                <section data-state="nothing">
+                    <iframe src="http://localhost:8000/3.html" style="width: 1000px; height: 800px;"></iframe>
+                </section>
+
+                <section data-state="bouvet-slide">
+                    <h2>Interaktivitet</h2>
+                    <ul>
+                        <li>Zoom kart til det kontoret vi trykker på</li>
+                    </ul>
+                </section>
+
+                <section data-state="nothing">
+                    <h2>Javascript - Views</h2>
+                    <iframe src="example/office_view.js" style="width: 1000px; height: 800px;"></iframe>
+                </section>
+
+                <section data-state="nothing">
+                    <iframe src="http://localhost:8000/4.html" style="width: 1000px; height: 800px;"></iframe>
+                </section>
+            </div>
+		</div>
+
+		<script src="reveal/lib/js/head.min.js"></script>
+		<script src="reveal/js/reveal.min.js"></script>
+
+		<script>
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

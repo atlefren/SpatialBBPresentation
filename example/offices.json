@@ -1,0 +1,163 @@
+[
+    {        
+        "position": {
+            "lat": 59.934950, 
+            "lon":10.758700
+        }, 
+        "name":"Oslo",
+        "street":"Sandakerveien 24c, bygning d11",
+        "line2":"Boks 4430 Nydalen",
+        "zip": "0403", 
+        "place": "Oslo",
+        "tlf": "+47 23 40 60 00"
+    },
+    {
+        "position": {
+            "lat":58.897193,
+            "lon": 5.696753
+        }, 
+        "name": "Stavanger - Forus",
+        "street": "Fabrikkveien 10",
+        "zip": "4033",
+        "place": "Stavanger",
+        "tlf": "+47 51 20 00 20"
+    },
+    {
+        "position": {
+            "lat":58.97090,
+            "lon": 5.73117
+        }, "name": "Stavanger - Vågen", 
+        "street": "Strandkaien 2  ",
+        "line2": "Boks 344 Sentrum",
+        "zip": "4002", 
+        "place": "Stavanger",
+        "tlf": "+47 51 20 00 20"
+    },
+    {
+        "position": {
+            "lat": 58.446839,
+            "lon": 8.749745
+        }, 
+        "name": "Arendal", 
+        "street": "Vikaveien 29",
+        "zip": "4817",
+        "place": "His",
+        "tlf": "+47 37 05 87 30"
+    },
+    {
+        "position": {
+            "lat": 60.377949,
+            "lon": 5.334673
+        },
+        "name": "Bergen", 
+        "street": "Solheimsgaten 15",
+        "zip": "5058",
+        "place": "Bergen",
+        "tlf": "+47 55 20 09 17"
+    },
+    {
+        "position": {
+            "lat": 59.19847,
+            "lon": 9.61275
+        },
+        "name": "Grenland",  
+        "street": "Uniongata 18",
+        "line2": "Klosterøya",
+        "zip": "3732",
+        "place": "Skien",
+        "tlf": "+47 23 40 60 00"
+    },
+    {
+        "position": {
+            "lat": 59.397328,
+            "lon": 5.297406
+        },
+        "name": "Haugesund",
+        "street": "Diktervegen 8",
+        "zip": "5538",
+        "place": "Haugesund",
+        "tlf": "+47 52 82 10 17"
+    },
+    {
+        "position": {
+            "lat": 58.152,
+            "lon": 8.00419
+        },
+    
+        "name": "Kristiansand", 
+        "street": "Kjøita 25",
+        "zip": "4630",
+        "place": "Kristiansand",
+        "tlf": "+47 23 40 60 00"
+    },
+    {
+        "position": {
+            "lat":59.892904, 
+            "lon": 10.523733
+        }, 
+        "name":"Sandvika", 
+        "street": "Leif Tronstadsplass 6",
+        "zip": "1337",
+        "place": "Sandvika",
+        "tlf": "+47 23 40 60 00"
+    },
+    {
+        "position": {
+            "lat": 59.171930,
+            "lon": 10.207400
+        }, 
+        "name":"Sandefjord",
+        "street": "Klinestadmoen 9",
+        "zip": "3241",
+        "place": "Sandefjord",
+        "tlf":"+47 23 40 60 00"
+    },
+    {
+        "position": {
+            "lat": 63.430217,
+            "lon": 10.402286
+        
+        }, 
+        "name":"Trondheim", 
+        "street": "Kjøpmannsgata 35",
+        "zip": "7011",
+        "place": "Trondheim",
+        "tlf": "+ 47 73 53 70 00"
+    },
+    {
+        "position": {
+            "lat":59.2943, 
+            "lon":18.0801
+        
+        }, 
+        "name": "Stockholm",
+        "street": "Arenavägen 45, 16 tr",
+        "zip": "SE-121 77",
+        "place": "Johanneshov",
+        "tlf": "+46 (0) 709 431 450"
+    },
+    {
+        "position": {
+            "lat": 55.605333, 
+            "lon": 13.001238
+      
+        }, 
+        "name": "Malmö", 
+        "street":"Södergatan 3",
+        "zip": "211 34",
+        "place": "Malmö",
+        "tlf": "040-6366000"
+    },
+    {
+        "position": {
+            "lat":59.2749260449996,
+            "lon": 15.2127063756082
+        
+        }, 
+        "name": "Örebro", 
+        "street": "Järntorgsgatan 8, 4 tr",
+        "zip": "SE-703 61",
+        "place": "Örebro",
+        "tlf":"+ 46 (0) 709 431 411"
+    }
+]
